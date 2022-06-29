@@ -1,0 +1,19 @@
+{
+  "name": "expression_tree",
+  "version": "1.0.0",
+  "description": "refactoring an expression tree",
+  "main": "index.js",
+  "scripts": {
+    "start": "node tree.js",
+    "test": "jest",
+    "t-watch": "jest --watchAll"
+  },
+  "keywords": [
+    "challenge"
+  ],
+  "author": "rubengglez",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^28.1.1"
+  }
+}
