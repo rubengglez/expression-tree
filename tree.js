@@ -1,4 +1,5 @@
 const assert = require("assert");
+const ValueNode = require("./ValueNode");
 
 const Node = (operator, value, left, right) => {
     const result = function () {
@@ -11,8 +12,6 @@ const Node = (operator, value, left, right) => {
                 return left.result() * right.result();
             case "÷":
                 return left.result() / right.result();
-            default:
-                return value;
         }
     };
 
@@ -26,8 +25,6 @@ const Node = (operator, value, left, right) => {
                 return `(${left.toString()} x ${right.toString()})`;
             case "÷":
                 return `(${left.toString()} ÷ ${right.toString()})`;
-            default:
-                return value.toString();
         }
     };
 
@@ -47,15 +44,15 @@ const tree = Node(
     Node(
         "+",
         null,
-        Node("", 7, null, null),
+        ValueNode(7),
         Node(
             "x",
             null,
-            Node("-", null, Node("", 3, null, null), Node("", 2, null, null)),
-            Node("", 5, null, null)
+            Node("-", null, ValueNode(3), ValueNode(2)),
+            ValueNode(5)
         )
     ),
-    Node("", 6, null, null)
+    ValueNode(6)
 );
 
 assert.strictEqual("((7 + ((3 - 2) x 5)) ÷ 6)", tree.toString());
