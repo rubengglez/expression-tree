@@ -3,35 +3,9 @@ const ValueNode = require("./ValueNode");
 const SubtractionNode = require("./SubtractionNode");
 const MultiplicationNode = require("./MultiplicationNode");
 const SumNode = require("./SumNode");
+const DivisionNode = require("./DivisionNode");
 
-const Node = (operator, value, left, right) => {
-    const result = function () {
-        switch (this.operator) {
-            case "÷":
-                return left.result() / right.result();
-        }
-    };
-
-    const toString = function () {
-        switch (this.operator) {
-            case "÷":
-                return `(${left.toString()} ÷ ${right.toString()})`;
-        }
-    };
-
-    return {
-        operator,
-        value,
-        left,
-        right,
-        result,
-        toString
-    };
-};
-
-const tree = Node(
-    "÷",
-    null,
+const tree = DivisionNode(
     SumNode(
         ValueNode(7),
         MultiplicationNode(
