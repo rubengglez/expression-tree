@@ -1,13 +1,12 @@
 const assert = require("assert");
 const ValueNode = require("./ValueNode");
+const SubtractionNode = require("./SubtractionNode");
 
 const Node = (operator, value, left, right) => {
     const result = function () {
         switch (this.operator) {
             case "+":
                 return left.result() + right.result();
-            case "-":
-                return left.result() - right.result();
             case "x":
                 return left.result() * right.result();
             case "÷":
@@ -19,8 +18,6 @@ const Node = (operator, value, left, right) => {
         switch (this.operator) {
             case "+":
                 return `(${left.toString()} + ${right.toString()})`;
-            case "-":
-                return `(${left.toString()} - ${right.toString()})`;
             case "x":
                 return `(${left.toString()} x ${right.toString()})`;
             case "÷":
@@ -48,7 +45,7 @@ const tree = Node(
         Node(
             "x",
             null,
-            Node("-", null, ValueNode(3), ValueNode(2)),
+            SubtractionNode(ValueNode(3), ValueNode(2)),
             ValueNode(5)
         )
     ),
